@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Hypr Minimal
+Description=Тёмный фон и тонкая полоса прогресса
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/hypr-minimal
+ScriptFile=/usr/share/plymouth/themes/hypr-minimal/hypr-minimal.script

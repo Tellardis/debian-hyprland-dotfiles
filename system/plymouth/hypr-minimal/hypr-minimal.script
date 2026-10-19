@@ -1,0 +1,22 @@
+Window.SetBackgroundTopColor(0.067, 0.067, 0.106);
+Window.SetBackgroundBottomColor(0.067, 0.067, 0.106);
+
+bg = Image("bar-bg.png");
+fill = Image("bar-fill.png");
+w = bg.GetWidth();
+h = bg.GetHeight();
+x = Window.GetX() + Window.GetWidth() / 2 - w / 2;
+y = Window.GetY() + Window.GetHeight() * 0.62;
+
+bg_sprite = Sprite(bg);
+bg_sprite.SetPosition(x, y, 1);
+fill_sprite = Sprite();
+fill_sprite.SetPosition(x, y, 2);
+
+fun progress_cb(duration, progress) {
+    if (progress > 1) progress = 1;
+    n = Math.Int(w * progress);
+    if (n < 1) n = 1;
+    fill_sprite.SetImage(fill.Scale(n, h));
+}
+Plymouth.SetBootProgressFunction(progress_cb);

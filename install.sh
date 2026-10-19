@@ -5,6 +5,7 @@
 #   sudo ./install.sh packages   backports + пакеты Hyprland
 #   sudo ./install.sh nvidia     драйвер NVIDIA из репозитория NVIDIA (с подтверждением)
 #   sudo ./install.sh login      экран входа (greetd + tuigreet), GRUB, тихая консоль
+#   sudo ./install.sh plymouth   заставка загрузки (тема hypr-catppuccin, splash, nvidia в initramfs)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 USER_NAME="${SUDO_USER:-$USER}"
@@ -96,10 +97,30 @@ stage_login() {
   echo "Готово. В меню GRUB: пункт Hyprland (экран входа) и Debian GNOME (GDM, запасной)."
 }
 
+stage_plymouth() {
+  need_root
+  local bak="/root/hypr-setup-backup-$(date +%Y%m%d-%H%M%S)"; mkdir -p "$bak"
+  cp -a /etc/default/grub /etc/initramfs-tools/modules "$bak/"
+  echo "Бэкап: $bak"
+  apt-get install -y plymouth plymouth-label
+  rm -rf /usr/share/plymouth/themes/hypr-catppuccin
+  cp -r "$ROOT/system/plymouth/hypr-catppuccin" /usr/share/plymouth/themes/
+  grep -qE '^GRUB_CMDLINE_LINUX_DEFAULT=.*\bsplash\b' /etc/default/grub || \
+    sed -i 's|^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"|GRUB_CMDLINE_LINUX_DEFAULT="\1 splash"|' /etc/default/grub
+  # без модулей nvidia в initramfs у Plymouth нет DRM-устройства и заставка не рисуется
+  sed -i '/^# plymouth-nvidia-early begin/,/^# plymouth-nvidia-early end/d' /etc/initramfs-tools/modules
+  printf '# plymouth-nvidia-early begin\nnvidia\nnvidia_modeset\nnvidia_uvm\nnvidia_drm\n# plymouth-nvidia-early end\n' >> /etc/initramfs-tools/modules
+  plymouth-set-default-theme hypr-catppuccin
+  update-initramfs -u
+  update-grub
+  echo "Готово. Применится после перезагрузки. Откат: вернуть файлы из $bak и выполнить update-initramfs -u && update-grub."
+}
+
 case "${1:-}" in
   dotfiles) stage_dotfiles ;;
   packages) stage_packages ;;
   nvidia)   stage_nvidia ;;
   login)    stage_login ;;
+  plymouth) stage_plymouth ;;
   *) sed -n '2,8p' "$0"; exit 1 ;;
 esac

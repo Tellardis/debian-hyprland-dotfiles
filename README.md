@@ -26,6 +26,7 @@ sudo ./install.sh packages   # backports + Hyprland и утилиты
 sudo ./install.sh nvidia     # драйвер NVIDIA (спросит подтверждение), затем reboot
 ./install.sh dotfiles        # конфиги в ~/.config, скрипты в ~/.local/bin (старые конфиги копируются в ~/.config-backup-*)
 sudo ./install.sh login      # экран входа и GRUB; затем reboot
+sudo ./install.sh plymouth   # необязательно: заставка загрузки; затем reboot
 ```
 
 После перезагрузки в меню GRUB два пункта: **Hyprland** (с экраном входа tuigreet) и **Debian GNOME** (GDM, запасной вход).
@@ -39,6 +40,7 @@ sudo ./install.sh login      # экран входа и GRUB; затем reboot
 
 - Установка NVIDIA удаляет драйвер Debian (`purge`), поэтому перед ней убедитесь, что есть запасной способ входа.
 - `login` меняет `/etc/default/grub` (бэкап в `/root/hypr-setup-backup-*`) и маскирует sleep/suspend/hibernate.
+- `plymouth` добавляет `splash` в GRUB и модули nvidia в initramfs (бэкап в `/root/hypr-setup-backup-*`); нужна после `nvidia`.
 - Подробности и команды отката по каждому этапу: `docs/summary.md`.
 - Экран входа запускается только из пункта GRUB «Hyprland»; на tty1 остаётся обычный текстовый вход (Ctrl+Alt+F1).
 

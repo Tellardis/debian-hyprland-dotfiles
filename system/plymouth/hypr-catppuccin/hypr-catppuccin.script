@@ -1,0 +1,24 @@
+Window.SetBackgroundTopColor(0.118, 0.118, 0.180);
+Window.SetBackgroundBottomColor(0.118, 0.118, 0.180);
+
+cx = Window.GetX() + Window.GetWidth() / 2;
+cy = Window.GetY() + Window.GetHeight() / 2;
+
+name = Image("name.png");
+sub = Image("sub.png");
+arc = Image("arc.png");
+
+name_sprite = Sprite(name);
+name_sprite.SetPosition(cx - name.GetWidth() / 2, cy - 110, 1);
+sub_sprite = Sprite(sub);
+sub_sprite.SetPosition(cx - sub.GetWidth() / 2, cy - 50, 1);
+
+spin = Sprite();
+spin.SetPosition(cx - arc.GetWidth() / 2, cy + 20, 2);
+
+angle = 0;
+fun refresh_cb() {
+    angle += 0.12;
+    spin.SetImage(arc.Rotate(angle));
+}
+Plymouth.SetRefreshFunction(refresh_cb);

@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Hypr Catppuccin
+Description=Catppuccin Mocha: надпись и вращающаяся дуга
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/hypr-catppuccin
+ScriptFile=/usr/share/plymouth/themes/hypr-catppuccin/hypr-catppuccin.script
