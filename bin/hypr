@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Запуск Hyprland из TTY без унаследованных WAYLAND_DISPLAY/DISPLAY от GNOME.
+exec env -u WAYLAND_DISPLAY -u DISPLAY start-hyprland "$@"

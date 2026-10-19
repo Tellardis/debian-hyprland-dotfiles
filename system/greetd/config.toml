@@ -1,0 +1,6 @@
+[terminal]
+vt = 2
+
+[default_session]
+command = "tuigreet --time --time-format '%A, %d %B %Y   %H:%M' --greeting 'Добро пожаловать' --remember --asterisks --width 64 --window-padding 2 --container-padding 2 --prompt-padding 1 --theme 'border=magenta;text=white;prompt=green;time=cyan;action=blue;button=yellow;container=black;input=white' --cmd @HOME@/.local/bin/hypr"
+user = "_greetd"

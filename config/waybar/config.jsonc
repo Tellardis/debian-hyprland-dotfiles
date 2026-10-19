@@ -1,0 +1,27 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "spacing": 6,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["hyprland/language", "pulseaudio", "cpu", "memory", "disk", "clock", "tray"],
+    "hyprland/workspaces": { "format": "{id}" },
+    "hyprland/window": { "max-length": 60 },
+    "hyprland/language": { "format": "󰌌 {short}" },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 muted",
+        "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "$HOME/.local/bin/audio-toggle"
+    },
+    "cpu": { "format": "󰻠 {usage}%" },
+    "memory": { "format": "󰍛 {percentage}%" },
+    "disk": { "path": "/", "interval": 60, "format": "󰋊 {free}" , "tooltip-format": "Свободно: {free}\nЗанято: {used} ({percentage_used}%)\nВсего: {total}" },
+    "clock": { "format": "󰥔 {:%a %d.%m  %H:%M}" },
+    "tray": { "spacing": 8 }
+}

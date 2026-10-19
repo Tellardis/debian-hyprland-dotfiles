@@ -1,0 +1,6 @@
+[Unit]
+Description=Hyprland login screen (greetd)
+Requires=multi-user.target
+Wants=greetd.service
+After=multi-user.target greetd.service
+AllowIsolate=yes

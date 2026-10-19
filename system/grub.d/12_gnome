@@ -1,0 +1,22 @@
+#!/bin/sh
+# Пункт "Debian GNOME": самое новое ядро + graphical.target
+set -e
+KERNEL=$(ls /boot/vmlinuz-* 2>/dev/null | sort -V | tail -n1)
+[ -n "$KERNEL" ] || exit 0
+VER=${KERNEL#/boot/vmlinuz-}
+INITRD=/boot/initrd.img-$VER
+[ -e "$INITRD" ] || exit 0
+UUID=$(findmnt -no UUID /)
+cat <<EOG
+menuentry 'Debian GNOME (graphical.target, $VER)' --class debian --class gnu-linux --class os {
+    load_video
+    insmod gzio
+    insmod part_gpt
+    insmod ext2
+    search --no-floppy --fs-uuid --set=root $UUID
+    echo 'Loading Linux $VER ...'
+    linux $KERNEL root=UUID=$UUID ro quiet systemd.unit=graphical.target
+    echo 'Loading initial ramdisk ...'
+    initrd $INITRD
+}
+EOG

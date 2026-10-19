@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шпаргалка Hyprland</title>
+<style>
+  :root { --bg:#1e1e2e; --card:#313244; --text:#cdd6f4; --dim:#a6adc8; --accent:#89b4fa; --key:#45475a; --pink:#cba6f7; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px 16px 48px; background:var(--bg); color:var(--text); font:15px/1.5 system-ui, sans-serif; }
+  h1 { text-align:center; color:var(--accent); margin:0 0 4px; }
+  .sub { text-align:center; color:var(--dim); margin-bottom:24px; }
+  .grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:16px; }
+  section { background:var(--card); border-radius:12px; padding:14px 18px 10px; }
+  h2 { margin:0 0 8px; font-size:16px; color:var(--pink); }
+  .row { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:6px 0; border-top:1px solid #45475a66; }
+  .row:first-of-type { border-top:0; }
+  .keys { white-space:nowrap; }
+  kbd { background:var(--key); border-bottom:2px solid #11111b; border-radius:5px; padding:1px 7px; font:13px ui-monospace, monospace; }
+  .plus { color:var(--dim); margin:0 2px; }
+  .desc { color:var(--text); text-align:right; }
+  .note { color:var(--dim); font-size:13px; margin:8px 0 4px; }
+</style>
+</head>
+<body>
+<h1>Шпаргалка Hyprland</h1>
+<div class="sub">Super = клавиша Windows · конфиг: ~/.config/hypr/hyprland.lua</div>
+<div class="grid">
+
+<section><h2>Приложения и окна</h2>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>Q</kbd></span><span class="desc">Терминал (alacritty)</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>R</kbd></span><span class="desc">Лаунчер (fuzzel)</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>C</kbd></span><span class="desc">Закрыть окно</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>V</kbd></span><span class="desc">Плавающее / обычное окно</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>T</kbd></span><span class="desc">Сменить направление деления (togglesplit)</span></div>
+</section>
+
+<section><h2>Размер и пропорции окон</h2>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>Alt</kbd><span class="plus">+</span><kbd>H</kbd></span><span class="desc">Текущее окно уже</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>Alt</kbd><span class="plus">+</span><kbd>L</kbd></span><span class="desc">Текущее окно шире</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>ПКМ</kbd></span><span class="desc">Менять размер мышью (зажать)</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>ЛКМ</kbd></span><span class="desc">Перетаскивать окно (зажать)</span></div>
+  <div class="note">Новое окно делит экран примерно 2/3 на 1/3 (default_split_ratio = 1.33).</div>
+</section>
+
+<section><h2>Фокус</h2>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>H</kbd></span><span class="desc">Влево</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>J</kbd></span><span class="desc">Вниз</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>K</kbd></span><span class="desc">Вверх</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>L</kbd></span><span class="desc">Вправо</span></div>
+  <div class="note">Стрелки тоже работают (через Fn-слой клавиатуры).</div>
+</section>
+
+<section><h2>Рабочие столы и мониторы</h2>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>1…9, 0</kbd></span><span class="desc">Перейти на стол 1–10 (0 = 10)</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>Shift</kbd><span class="plus">+</span><kbd>1…9, 0</kbd></span><span class="desc">Перенести окно на стол</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>Ctrl</kbd><span class="plus">+</span><kbd>H</kbd> / <kbd>L</kbd></span><span class="desc">Окно на монитор слева / справа</span></div>
+</section>
+
+<section><h2>Сессия и экран</h2>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>Shift</kbd><span class="plus">+</span><kbd>L</kbd></span><span class="desc">Блокировка (hyprlock)</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>M</kbd></span><span class="desc">Выйти из Hyprland (hyprshutdown)</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>Shift</kbd><span class="plus">+</span><kbd>C</kbd></span><span class="desc">Пипетка: цвет в буфер (hex)</span></div>
+  <div class="note">hypridle: блокировка через 10 мин, экран гаснет через 15 мин. hyprsunset: тёплый свет с 21:00, обычный с 7:00.</div>
+</section>
+
+<section><h2>Скриншоты</h2>
+  <div class="row"><span class="keys"><kbd>Print</kbd></span><span class="desc">Область: файл + буфер обмена</span></div>
+  <div class="row"><span class="keys"><kbd>Shift</kbd><span class="plus">+</span><kbd>Print</kbd></span><span class="desc">Весь экран в файл</span></div>
+  <div class="note">Файлы лежат в ~/Pictures/Screenshots/</div>
+</section>
+
+<section><h2>Звук и обои</h2>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>F9</kbd></span><span class="desc">Наушники ⇄ колонки</span></div>
+  <div class="row"><span class="keys"><kbd>ПКМ</kbd> по звуку в waybar</span><span class="desc">То же самое</span></div>
+  <div class="row"><span class="keys"><kbd>Super</kbd><span class="plus">+</span><kbd>F10</kbd></span><span class="desc">Следующие обои (сами каждые 15 мин)</span></div>
+  <div class="row"><span class="keys"><kbd>Vol+</kbd> / <kbd>Vol−</kbd></span><span class="desc">Громкость ±5 %</span></div>
+  <div class="row"><span class="keys"><kbd>Mute</kbd></span><span class="desc">Звук вкл / выкл</span></div>
+</section>
+
+<section><h2>Раскладка</h2>
+  <div class="row"><span class="keys"><kbd>Alt</kbd><span class="plus">+</span><kbd>Shift</kbd></span><span class="desc">us ⇄ ru</span></div>
+  <div class="row"><span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>Shift</kbd><span class="plus">+</span><kbd>C</kbd> / <kbd>V</kbd></span><span class="desc">Копировать / вставить в alacritty (и на ru)</span></div>
+</section>
+
+<section><h2>Neovim (LazyVim)</h2>
+  <div class="row"><span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>D</kbd> / <kbd>U</kbd></span><span class="desc">Пол-экрана вниз / вверх</span></div>
+  <div class="row"><span class="keys"><kbd>Ctrl</kbd><span class="plus">+</span><kbd>F</kbd> / <kbd>B</kbd></span><span class="desc">Экран вниз / вверх</span></div>
+  <div class="row"><span class="keys"><kbd>gg</kbd> / <kbd>G</kbd></span><span class="desc">Начало / конец файла</span></div>
+  <div class="row"><span class="keys"><kbd>{</kbd> / <kbd>}</kbd></span><span class="desc">Абзац вверх / вниз</span></div>
+  <div class="row"><span class="keys"><kbd>/</kbd><span class="plus">слово</span></span><span class="desc">Поиск (n / N: дальше / назад)</span></div>
+  <div class="row"><span class="keys"><kbd>Space</kbd> <kbd>u</kbd> <kbd>m</kbd></span><span class="desc">Рендер markdown вкл / выкл</span></div>
+  <div class="row"><span class="keys"><kbd>Space</kbd> <kbd>c</kbd> <kbd>p</kbd></span><span class="desc">Предпросмотр markdown в браузере</span></div>
+</section>
+
+<section><h2>Вход в систему</h2>
+  <div class="row"><span class="desc" style="text-align:left">GRUB, пункт 1: экран входа tuigreet (tty2), логин запоминается, Hyprland стартует сам</span></div>
+  <div class="row"><span class="desc" style="text-align:left">GRUB, «Debian GNOME»: запасной вход через GDM</span></div>
+  <div class="row"><span class="desc" style="text-align:left">Ctrl+Alt+F1: запасной tty-логин (тоже запускает Hyprland)</span></div>
+  <div class="row"><span class="desc" style="text-align:left">tty3: логин тоже запускает Hyprland</span></div>
+</section>
+
+</div>
+</body>
+</html>
