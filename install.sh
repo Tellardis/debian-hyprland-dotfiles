@@ -25,6 +25,7 @@ stage_dotfiles() {
   done
   [ ! -d "$bak" ] || echo "Старые конфиги сохранены в $bak"
   sed -i "s|@HOME@|$HOME|g" "$HOME/.config/hypr/hyprpaper.conf"
+  sed -i "s|@HOME@|$HOME|g" "$HOME/.config/flameshot/flameshot.ini"
   install -m 755 "$ROOT"/bin/* "$HOME/.local/bin/"
   if ! grep -q 'Автозапуск Hyprland' "$HOME/.profile" 2>/dev/null; then
     { echo; cat "$ROOT/home/profile-snippet.sh"; } >> "$HOME/.profile"
@@ -42,6 +43,9 @@ stage_packages() {
     hyprpaper hypridle hyprlock hyprpolkitagent hyprshutdown hyprsunset hyprpicker \
     waybar mako-notifier fuzzel
   apt-get install -y alacritty grim slurp wl-clipboard pipewire-pulse wireplumber
+  apt-get install -y git curl wget unzip ripgrep fd-find build-essential cmake ninja-build \
+    fastfetch htop flameshot xdotool fonts-jetbrains-mono breeze-cursor-theme gnome-tweaks \
+    adwaita-qt qt5-gtk-platformtheme qt6-gtk-platformtheme
   echo "Neovim (LazyVim) ставится отдельно, см. README."
 }
 

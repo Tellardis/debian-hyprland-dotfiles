@@ -11,6 +11,7 @@
 | `config/hypr` | Hyprland (`hyprland.lua`), hypridle, hyprlock, hyprpaper, hyprsunset |
 | `config/waybar`, `config/mako`, `config/alacritty` | панель, уведомления, терминал (тема Catppuccin Mocha) |
 | `config/nvim` | LazyVim с рендером Markdown |
+| `docs/apps.md` | список приложений, которые ставятся вручную |
 | `bin/` | `hypr` (запуск из TTY), `audio-toggle` (наушники/колонки), `wallpaper-next` (смена обоев) |
 | `system/` | экран входа greetd + tuigreet, GRUB-пункт «Debian GNOME», тихая консоль, параметры NVIDIA |
 | `home/profile-snippet.sh` | автозапуск Hyprland на tty3 (добавляется в `~/.profile`) |
